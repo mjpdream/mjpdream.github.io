@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>链表问题 | mjpdream&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="下面是本文所要用到链表节点的定义：1234struct Node&amp;#123;    int data;    Node* next;&amp;#125;; 1. 在O(1)时间删除链表节点题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]分析：本题与《编程之美》上的「从无头单链表中删除节点」类似。主要思想都是「狸猫换太子」，即用下一个节点数据覆盖要删除的节点，然后删">
+  <meta name="description" content="在O(1)时间删除链表节点 单链表的转置 求链表倒数第k个节点 求链表的中间节点 判断单链表是否存在环 找到环的入口点 判断两个链表是否相交">
 <meta name="keywords" content="leetcode">
 <meta property="og:type" content="article">
 <meta property="og:title" content="链表问题">
 <meta property="og:url" content="http://yoursite.com/2018/02/05/链表问题/index.html">
 <meta property="og:site_name" content="mjpdream&#39;s blog">
-<meta property="og:description" content="下面是本文所要用到链表节点的定义：1234struct Node&amp;#123;    int data;    Node* next;&amp;#125;; 1. 在O(1)时间删除链表节点题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]分析：本题与《编程之美》上的「从无头单链表中删除节点」类似。主要思想都是「狸猫换太子」，即用下一个节点数据覆盖要删除的节点，然后删">
+<meta property="og:description" content="在O(1)时间删除链表节点 单链表的转置 求链表倒数第k个节点 求链表的中间节点 判断单链表是否存在环 找到环的入口点 判断两个链表是否相交">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/81b78497tw1eesdi7bb2kj20d403qaa0.jpg">
-<meta property="og:updated_time" content="2018-02-05T13:28:16.766Z">
+<meta property="og:updated_time" content="2018-02-05T14:06:57.579Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="链表问题">
-<meta name="twitter:description" content="下面是本文所要用到链表节点的定义：1234struct Node&amp;#123;    int data;    Node* next;&amp;#125;; 1. 在O(1)时间删除链表节点题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]分析：本题与《编程之美》上的「从无头单链表中删除节点」类似。主要思想都是「狸猫换太子」，即用下一个节点数据覆盖要删除的节点，然后删">
+<meta name="twitter:description" content="在O(1)时间删除链表节点 单链表的转置 求链表倒数第k个节点 求链表的中间节点 判断单链表是否存在环 找到环的入口点 判断两个链表是否相交">
 <meta name="twitter:image" content="http://ww2.sinaimg.cn/large/81b78497tw1eesdi7bb2kj20d403qaa0.jpg">
   
     <link rel="alternative" href="/atom.xml" title="mjpdream&#39;s blog" type="application/atom+xml">
@@ -194,7 +194,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>下面是本文所要用到链表节点的定义：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node* next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+        <ul>
+<li>在O(1)时间删除链表节点</li>
+<li>单链表的转置</li>
+<li>求链表倒数第k个节点</li>
+<li>求链表的中间节点</li>
+<li>判断单链表是否存在环</li>
+<li>找到环的入口点</li>
+<li>判断两个链表是否相交</li>
+</ul>
+<a id="more"></a>
+<p>下面是本文所要用到链表节点的定义：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node* next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h4 id="1-在O-1-时间删除链表节点"><a href="#1-在O-1-时间删除链表节点" class="headerlink" title="1. 在O(1)时间删除链表节点"></a>1. 在O(1)时间删除链表节点</h4><h6 id="题目描述：给定链表的头指针和一个节点指针，在O-1-时间删除该节点。-Google面试题"><a href="#题目描述：给定链表的头指针和一个节点指针，在O-1-时间删除该节点。-Google面试题" class="headerlink" title="题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]"></a>题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]</h6><p>分析：本题与《编程之美》上的「从无头单链表中删除节点」类似。主要思想都是「狸猫换太子」，即用下一个节点数据覆盖要删除的节点，然后删除下一个节点。但是如果节点是尾节点时，该方法就行不通了。</p>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//O(1)时间删除链表节点，从无头单链表中删除节点</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">deleteRandomNode</span><span class="params">(Node *cur)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    assert(cur != <span class="literal">NULL</span>);</span><br><span class="line">    assert(cur-&gt;next != <span class="literal">NULL</span>);    <span class="comment">//不能是尾节点</span></span><br><span class="line">    Node* pNext = cur-&gt;next;</span><br><span class="line">    cur-&gt;data = pNext-&gt;data;</span><br><span class="line">    cur-&gt;next = pNext-&gt;next;</span><br><span class="line">    <span class="keyword">delete</span> pNext;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -216,7 +226,7 @@
 <p>显然在这个步骤当中 p1 和 p2 只有前 a 步走的路径不同，所以当 p1 和 p2 再次重合的时候，必然是在链表的环路入口点上。</p>
 <p>代码如下：</p>
 <figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//找到环的入口点</span></span><br><span class="line"><span class="function">Node* <span class="title">findLoopPort</span><span class="params">(Node *head)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">    <span class="comment">//如果head为空，或者为单结点，则不存在环</span></span><br><span class="line">    <span class="keyword">if</span>(head == <span class="literal">NULL</span> || head-&gt;next == <span class="literal">NULL</span>) <span class="keyword">return</span> <span class="literal">NULL</span>;</span><br><span class="line">    Node *slow,*fast;</span><br><span class="line">    slow = fast = head;</span><br><span class="line">    <span class="comment">//先判断是否存在环</span></span><br><span class="line">    <span class="keyword">while</span>(fast != <span class="literal">NULL</span> &amp;&amp; fast-&gt;next != <span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        fast = fast-&gt;next-&gt;next;</span><br><span class="line">        slow = slow-&gt;next;</span><br><span class="line">        <span class="keyword">if</span>(fast == slow)</span><br><span class="line">            <span class="keyword">break</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span>(fast != slow) <span class="keyword">return</span> <span class="literal">NULL</span>;    <span class="comment">//不存在环</span></span><br><span class="line">    fast = head;                <span class="comment">//快指针从头开始走，步长变为1</span></span><br><span class="line">    <span class="keyword">while</span>(fast != slow)            <span class="comment">//两者相遇即为入口点</span></span><br><span class="line">    &#123;</span><br><span class="line">        fast = fast-&gt;next;</span><br><span class="line">        slow = slow-&gt;next;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> fast;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h4 id="7-编程判断两个链表是否相交"><a href="#7-编程判断两个链表是否相交" class="headerlink" title="7. 编程判断两个链表是否相交"></a>7. 编程判断两个链表是否相交</h4><h5 id="题目描述：给出两个单向链表的头指针（如下图所示），"><a href="#题目描述：给出两个单向链表的头指针（如下图所示），" class="headerlink" title="题目描述：给出两个单向链表的头指针（如下图所示），"></a>题目描述：给出两个单向链表的头指针（如下图所示），</h5><p><img src="http://ww2.sinaimg.cn/large/81b78497tw1eesdi7bb2kj20d403qaa0.jpg" alt="image"></p>
+<h4 id="7-判断两个链表是否相交"><a href="#7-判断两个链表是否相交" class="headerlink" title="7. 判断两个链表是否相交"></a>7. 判断两个链表是否相交</h4><h5 id="题目描述：给出两个单向链表的头指针（如下图所示），"><a href="#题目描述：给出两个单向链表的头指针（如下图所示），" class="headerlink" title="题目描述：给出两个单向链表的头指针（如下图所示），"></a>题目描述：给出两个单向链表的头指针（如下图所示），</h5><p><img src="http://ww2.sinaimg.cn/large/81b78497tw1eesdi7bb2kj20d403qaa0.jpg" alt="image"></p>
 <p>比如h1、h2，判断这两个链表是否相交。这里为了简化问题，我们假设两个链表均不带环。</p>
 <p>解题思路：</p>
 <p>直接循环判断第一个链表的每个节点是否在第二个链表中。但，这种方法的时间复杂度为O(Length(h1) * Length(h2))。显然，我们得找到一种更为有效的方法，至少不能是O（N^2）的复杂度。</p>
