@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="mjpdream&#39;s blog">
 <meta property="og:description" content="下面是本文所要用到链表节点的定义：1234struct Node&amp;#123;    int data;    Node* next;&amp;#125;; 1. 在O(1)时间删除链表节点题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]分析：本题与《编程之美》上的「从无头单链表中删除节点」类似。主要思想都是「狸猫换太子」，即用下一个节点数据覆盖要删除的节点，然后删">
 <meta property="og:image" content="http://ww2.sinaimg.cn/large/81b78497tw1eesdi7bb2kj20d403qaa0.jpg">
-<meta property="og:updated_time" content="2018-02-05T13:18:53.413Z">
+<meta property="og:updated_time" content="2018-02-05T13:26:32.193Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="链表问题">
 <meta name="twitter:description" content="下面是本文所要用到链表节点的定义：1234struct Node&amp;#123;    int data;    Node* next;&amp;#125;; 1. 在O(1)时间删除链表节点题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]分析：本题与《编程之美》上的「从无头单链表中删除节点」类似。主要思想都是「狸猫换太子」，即用下一个节点数据覆盖要删除的节点，然后删">
@@ -194,7 +194,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>下面是本文所要用到链表节点的定义：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">struct Node&#123;</span><br><span class="line">    int data;</span><br><span class="line">    Node* next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+        <p>下面是本文所要用到链表节点的定义：<br><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">struct</span> <span class="title">Node</span>&#123;</span></span><br><span class="line">    <span class="keyword">int</span> data;</span><br><span class="line">    Node* next;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <h4 id="1-在O-1-时间删除链表节点"><a href="#1-在O-1-时间删除链表节点" class="headerlink" title="1. 在O(1)时间删除链表节点"></a>1. 在O(1)时间删除链表节点</h4><h6 id="题目描述：给定链表的头指针和一个节点指针，在O-1-时间删除该节点。-Google面试题"><a href="#题目描述：给定链表的头指针和一个节点指针，在O-1-时间删除该节点。-Google面试题" class="headerlink" title="题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]"></a>题目描述：给定链表的头指针和一个节点指针，在O(1)时间删除该节点。[Google面试题]</h6><p>分析：本题与《编程之美》上的「从无头单链表中删除节点」类似。主要思想都是「狸猫换太子」，即用下一个节点数据覆盖要删除的节点，然后删除下一个节点。但是如果节点是尾节点时，该方法就行不通了。</p>
 <p>代码如下：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">//O(1)时间删除链表节点，从无头单链表中删除节点</span><br><span class="line">void deleteRandomNode(Node *cur)</span><br><span class="line">&#123;</span><br><span class="line">    assert(cur != NULL);</span><br><span class="line">    assert(cur-&gt;next != NULL);    //不能是尾节点</span><br><span class="line">    Node* pNext = cur-&gt;next;</span><br><span class="line">    cur-&gt;data = pNext-&gt;data;</span><br><span class="line">    cur-&gt;next = pNext-&gt;next;</span><br><span class="line">    delete pNext;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
